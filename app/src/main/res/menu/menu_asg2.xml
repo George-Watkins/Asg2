@@ -1,0 +1,55 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="git.comgeorge_watkinsasg2.httpsgithub.asg2.Asg2"
+    android:alpha="0">
+
+    <item
+        android:title="@string/toolbarReset"
+        android:id="@+id/reset"
+        android:icon="@drawable/revert_icon"
+        android:orderInCategory="200"
+        android:visible="true"
+        app:showAsAction="always">
+    </item>
+
+    <item
+        android:title="@string/toolbarEdit"
+        android:id="@+id/action_edit"
+        android:orderInCategory="300"
+        android:icon="@drawable/edit_icon"
+        android:visible="true"
+        app:showAsAction="always">
+    </item>
+
+    <item
+        android:title="@string/toolbarColorizePicture"
+        android:id="@+id/action_colorize"
+        android:orderInCategory="400"
+        android:icon="@drawable/eye_icon"
+        android:visible="true"
+        app:showAsAction="always">
+    </item>
+
+    <item
+        android:title="@string/toolbarShare"
+        android:id="@+id/share"
+        android:icon="@drawable/share_icon"
+        android:orderInCategory="500"
+        android:visible="true"
+        app:showAsAction="always">
+    </item>
+
+    <item
+        android:id="@+id/settings"
+        android:orderInCategory="600"
+        android:title="@string/action_settings">
+    </item>
+
+    <item
+        android:id="@+id/about"
+        android:orderInCategory="600"
+        android:title="@string/help"
+        app:showAsAction="never">
+    </item>
+</menu>
