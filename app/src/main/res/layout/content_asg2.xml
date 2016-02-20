@@ -26,5 +26,16 @@
         android:foreground="@drawable/camera"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="81dp" />
+        android:layout_marginBottom="81dp"
+        android:clickable="true"
+        android:onClick="takePicture"/>
+
+    <ImageView
+        android:id="@+id/newPicture"
+        android:scaleType="fitXY"
+        android:visibility="invisible"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
+
+
 </RelativeLayout>
