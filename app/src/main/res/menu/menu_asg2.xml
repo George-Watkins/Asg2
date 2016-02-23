@@ -20,7 +20,8 @@
         android:orderInCategory="300"
         android:icon="@drawable/edit_icon"
         android:visible="true"
-        app:showAsAction="always">
+        app:showAsAction="always"
+        android:onClick="doEdit">
     </item>
 
     <item
@@ -29,7 +30,8 @@
         android:orderInCategory="400"
         android:icon="@drawable/view_icon"
         android:visible="true"
-        app:showAsAction="always">
+        app:showAsAction="always"
+        android:onClick="doColorize">
     </item>
 
     <item
@@ -38,7 +40,8 @@
         android:icon="@drawable/share_icon"
         android:orderInCategory="500"
         android:visible="true"
-        app:showAsAction="always">
+        app:showAsAction="always"
+        android:onClick="doShare">
     </item>
 
     <item

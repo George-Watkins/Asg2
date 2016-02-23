@@ -1,12 +1,19 @@
 package git.comgeorge_watkinsasg2.httpsgithub.asg2;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,6 +30,8 @@ import android.widget.Toast;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import java.io.File;
 
 public class Asg2 extends AppCompatActivity {
 
@@ -46,7 +55,9 @@ public class Asg2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent,0);
+                File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+                File file = new File(path, "DemoPicture.jpg");
+                startActivityForResult(intent, 0);
             }
         });
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -103,49 +114,47 @@ public class Asg2 extends AppCompatActivity {
         dialog.show();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//
+//        // ATTENTION: This was auto-generated to implement the App Indexing API.
+//        // See https://g.co/AppIndexing/AndroidStudio for more information.
+//        client.connect();
+//        Action viewAction = Action.newAction(
+//                Action.TYPE_VIEW, // TODO: choose an action type.
+//                "Asg2 Page", // TODO: Define a title for the content shown.
+//                // TODO: If you have web page content that matches this app activity's content,
+//                // make sure this auto-generated web page URL is correct.
+//                // Otherwise, set the URL to null.
+//                Uri.parse("http://host/path"),
+//                // TODO: Make sure this auto-generated app deep link URI is correct.
+//                Uri.parse("android-app://git.comgeorge_watkinsasg2.httpsgithub.asg2/http/host/path")
+//        );
+//        AppIndex.AppIndexApi.start(client, viewAction);
+//    }
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Asg2 Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://git.comgeorge_watkinsasg2.httpsgithub.asg2/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
 
-    public void doReset(MenuItem item) {
-        newPicture.setVisibility(View.INVISIBLE);
-    }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Asg2 Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-//                 TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://git.comgeorge_watkinsasg2.httpsgithub.asg2/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
-    }
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//
+//        // ATTENTION: This was auto-generated to implement the App Indexing API.
+//        // See https://g.co/AppIndexing/AndroidStudio for more information.
+//        Action viewAction = Action.newAction(
+//                Action.TYPE_VIEW, // TODO: choose an action type.
+//                "Asg2 Page", // TODO: Define a title for the content shown.
+//                // TODO: If you have web page content that matches this app activity's content,
+//                // make sure this auto-generated web page URL is correct.
+//                // Otherwise, set the URL to null.
+//                Uri.parse("http://host/path"),
+////                 TODO: Make sure this auto-generated app deep link URI is correct.
+//                Uri.parse("android-app://git.comgeorge_watkinsasg2.httpsgithub.asg2/http/host/path")
+//        );
+//        AppIndex.AppIndexApi.end(client, viewAction);
+//        client.disconnect();
+//    }
 
     //makes the captured image show up on the screen after picture is taken
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -156,5 +165,24 @@ public class Asg2 extends AppCompatActivity {
         }
     }
 
-//    }
+    //this will colorize the photo after it is taken
+    public void doColorize(MenuItem item) {
+    }
+
+    public void doReset(MenuItem item) {
+        newPicture.setVisibility(View.INVISIBLE);
+    }
+
+    //this method will invoke app to share picture
+    public void doShare(MenuItem item) {
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("image/jpg");
+        File photo = new File(getFilesDir(), "foo.jpg");
+        share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(photo));
+        startActivity(Intent.createChooser(share, "Share image using"));
+    }
+
+    //will change the picture to black and white
+    public void doEdit(MenuItem item) {
+    }
 }
