@@ -7,7 +7,7 @@
     <item
         android:title="@string/toolbarReset"
         android:id="@+id/reset"
-        android:icon="@drawable/revert_icon"
+        android:icon="@android:drawable/ic_menu_revert"
         android:orderInCategory="200"
         android:visible="true"
         app:showAsAction="always">
@@ -17,7 +17,7 @@
         android:title="@string/toolbarEdit"
         android:id="@+id/action_edit"
         android:orderInCategory="300"
-        android:icon="@drawable/edit_icon"
+        android:icon="@android:drawable/ic_menu_edit"
         android:visible="true"
         app:showAsAction="always">
     </item>
@@ -26,7 +26,7 @@
         android:title="@string/toolbarColorizePicture"
         android:id="@+id/action_colorize"
         android:orderInCategory="400"
-        android:icon="@drawable/view_icon"
+        android:icon="@android:drawable/ic_menu_view"
         android:visible="true"
         app:showAsAction="always">
     </item>
@@ -34,7 +34,7 @@
     <item
         android:title="@string/toolbarShare"
         android:id="@+id/share"
-        android:icon="@drawable/share_icon"
+        android:icon="@android:drawable/ic_menu_share"
         android:orderInCategory="500"
         android:visible="true"
         app:showAsAction="always">
