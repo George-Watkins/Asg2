@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -23,10 +24,6 @@ import java.io.File;
 public class Asg2 extends AppCompatActivity {
 
     ImageView newPicture;
-    private GoogleApiClient client;
-    ImageView cameraButton;
-    File file;
-    File path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,18 +33,16 @@ public class Asg2 extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         newPicture = (ImageView)findViewById(R.id.newPicture);
-        cameraButton = (ImageView)findViewById(R.id.cameraButton);
+        ImageView cameraButton = (ImageView)findViewById(R.id.cameraButton);
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cameraButton.setVisibility(View.INVISIBLE);
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-                file = new File(path, "foo.jpg");
+                File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+                File file = new File(path, "DemoPicture.jpg");
                 startActivityForResult(intent, 0);
             }
         });
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -81,7 +76,7 @@ public class Asg2 extends AppCompatActivity {
                 doEdit();
                 return true;
             case R.id.action_colorize:
-                doColorize();
+                doGrayscale();
                 return true;
         }
 
@@ -101,6 +96,7 @@ public class Asg2 extends AppCompatActivity {
         dialog.show();
     }
 
+
     //makes the captured image show up on the screen after picture is taken
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         newPicture.setVisibility(View.VISIBLE);
@@ -111,11 +107,10 @@ public class Asg2 extends AppCompatActivity {
     }
 
     //this will colorize the photo after it is taken
-    public void doColorize() {
+    public void doGrayscale() {
     }
 
     public void doReset() {
-        cameraButton.setVisibility(View.VISIBLE);
         newPicture.setVisibility(View.INVISIBLE);
     }
 
@@ -123,9 +118,9 @@ public class Asg2 extends AppCompatActivity {
     public void doShare() {
         Intent share = new Intent(Intent.ACTION_SEND);
         share.setType("image/jpg");
-        File photo = new File(path, "foo.jpg");
+        File photo = new File(getFilesDir(), "foo.jpg");
         share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(photo));
-        startActivity(Intent.createChooser(share, "What application would you like to use?"));
+        startActivity(Intent.createChooser(share, "Share image using"));
     }
 
     //will change the picture to black and white

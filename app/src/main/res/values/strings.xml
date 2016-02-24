@@ -6,4 +6,6 @@
     <string name="toolbarColorizePicture">Colorize</string>
     <string name="toolbarEdit">Edit</string>
     <string name="toolbarReset">Reset</string>
+    <string name="Chooser">What application would you like to use?</string>
+    <string name="versionAuthor">Version One.  This app was created by Travis Smith and George Watkins</string>
 </resources>
