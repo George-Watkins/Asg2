@@ -16,9 +16,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-
 import java.io.File;
 
 public class Asg2 extends AppCompatActivity {
@@ -106,13 +103,7 @@ public class Asg2 extends AppCompatActivity {
         }
     }
 
-    //this will colorize the photo after it is taken
-    public void doGrayscale() {
-    }
 
-    public void doReset() {
-        newPicture.setVisibility(View.INVISIBLE);
-    }
 
     //this method will invoke app to share picture
     public void doShare() {
@@ -125,5 +116,13 @@ public class Asg2 extends AppCompatActivity {
 
     //will change the picture to black and white
     public void doEdit() {
+    }
+
+    //this will colorize the photo after it is taken
+    public void doGrayscale() {
+    }
+
+    public void doReset() {
+        newPicture.setVisibility(View.INVISIBLE);
     }
 }
