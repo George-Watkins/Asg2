@@ -126,6 +126,9 @@ public class Asg2 extends AppCompatActivity {
         //call bit map helpers merge and merge the two together
         BitMap_Helpers.merge(imageOne, imageTwo);
 
+        //set the ImageView to the new image
+        newPicture.setImageBitmap(imageTwo);
+
     }
 
     //this will make the picture black and white
