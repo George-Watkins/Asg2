@@ -1,6 +1,7 @@
 package git.comgeorge_watkinsasg2.httpsgithub.asg2;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -70,7 +71,7 @@ public class Asg2 extends AppCompatActivity {
 
         switch (id) {
             case R.id.settings:
-                Toast.makeText(this, "settings goes here", Toast.LENGTH_SHORT).show();
+                editSettings();
                 return true;
             case R.id.reset:
                 doReset();
@@ -90,6 +91,12 @@ public class Asg2 extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void editSettings() {
+        Intent i = new Intent(Asg2.this, settingsActivity.class);
+        startActivity(i);
+
     }
 
     private void doHelp() {
