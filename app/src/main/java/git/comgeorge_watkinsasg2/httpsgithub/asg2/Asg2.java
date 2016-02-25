@@ -21,6 +21,9 @@ import java.io.File;
 public class Asg2 extends AppCompatActivity {
 
     ImageView newPicture;
+    Bitmap theImage;
+    final int percentage = 50;
+    final float settingSat = 130;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,15 @@ public class Asg2 extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             }
         });
+    }
+
+    //makes the captured image show up on the screen after picture is taken
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        newPicture.setVisibility(View.VISIBLE);
+        if(requestCode == 0) {
+            theImage = (Bitmap) data.getExtras().get("data");
+            newPicture.setImageBitmap(theImage);
+        }
     }
 
     @Override
@@ -70,10 +82,10 @@ public class Asg2 extends AppCompatActivity {
                 doHelp();
                 return true;
             case R.id.action_edit:
-                doEdit();
+                doGrayscale();
                 return true;
             case R.id.action_colorize:
-                doGrayscale();
+                doColorize();
                 return true;
         }
 
@@ -93,18 +105,6 @@ public class Asg2 extends AppCompatActivity {
         dialog.show();
     }
 
-
-    //makes the captured image show up on the screen after picture is taken
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        newPicture.setVisibility(View.VISIBLE);
-        if(requestCode == 0) {
-            Bitmap theImage = (Bitmap) data.getExtras().get("data");
-            newPicture.setImageBitmap(theImage);
-        }
-    }
-
-
-
     //this method will invoke app to share picture
     public void doShare() {
         Intent share = new Intent(Intent.ACTION_SEND);
@@ -114,12 +114,15 @@ public class Asg2 extends AppCompatActivity {
         startActivity(Intent.createChooser(share, "Share image using"));
     }
 
-    //will change the picture to black and white
-    public void doEdit() {
+    //will change the picture to high contrast
+    public void doColorize() {
+        ManipBitmap.doThreshold(theImage, percentage);
+        ManipBitmap.colorBmp(theImage, settingSat);
     }
 
-    //this will colorize the photo after it is taken
+    //this will make the picture black and white
     public void doGrayscale() {
+        ManipBitmap.doThreshold(theImage, percentage);
     }
 
     public void doReset() {
