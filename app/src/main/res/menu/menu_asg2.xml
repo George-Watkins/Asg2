@@ -15,7 +15,7 @@
 
     <item
         android:title="@string/toolbarEdit"
-        android:id="@+id/action_edit"
+        android:id="@+id/action_Grayscale"
         android:orderInCategory="300"
         android:icon="@android:drawable/ic_menu_edit"
         android:visible="true"

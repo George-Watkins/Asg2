@@ -81,7 +81,7 @@ public class Asg2 extends AppCompatActivity {
             case R.id.about:
                 doHelp();
                 return true;
-            case R.id.action_edit:
+            case R.id.action_Grayscale:
                 doGrayscale();
                 return true;
             case R.id.action_colorize:
@@ -116,13 +116,21 @@ public class Asg2 extends AppCompatActivity {
 
     //will change the picture to high contrast
     public void doColorize() {
-        ManipBitmap.doThreshold(theImage, percentage);
-        ManipBitmap.colorBmp(theImage, settingSat);
+
+        //create black and white picture
+        Bitmap imageOne = BitMap_Helpers.thresholdBmp(theImage, percentage);
+
+        //call color bmp
+        Bitmap imageTwo = BitMap_Helpers.colorBmp(theImage, settingSat);
+
+        //call bit map helpers merge and merge the two together
+        BitMap_Helpers.merge(imageOne, imageTwo);
+
     }
 
     //this will make the picture black and white
     public void doGrayscale() {
-        ManipBitmap.doThreshold(theImage, percentage);
+        newPicture.setImageBitmap(BitMap_Helpers.thresholdBmp(theImage, percentage));
     }
 
     public void doReset() {
